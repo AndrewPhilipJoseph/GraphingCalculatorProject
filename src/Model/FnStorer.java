@@ -33,7 +33,6 @@ public class FnStorer {
         this.calculatedAnswer = answer;
     }
 
-
     public double getNumber1() {
         return number1;
     }
