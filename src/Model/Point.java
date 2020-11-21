@@ -3,20 +3,31 @@ import java.util.ArrayList;
 
 import View.GraphingCalculatorUI;
 import java.util.ArrayList;
-public class Point {
 
 
-    private ArrayList<Double> number;
-    int totalNumbers = 0;
-
+public class Point
+{
 
     public double x;
     public double y;
 
+    private ArrayList<FnStorer> listOfFns;
+    private int totalNumbers;
+
+
+
+    public Point() {
+        this.x = 0;
+        this.y = 0;
+     //   this.listOfFns.clear();
+        //  this.totalNumbers = 0;
+    }
 
     public Point(double x, Seperator mathData) {
+
+
         //number[totalNumbers] = 0;
-        getX(x);
+        setX(x);
         this.y = calculate(mathData);
 
         //Convert(GraphingCalculatorUI.input);
@@ -24,6 +35,7 @@ public class Point {
     }
 
     public double calculate(Seperator mathData) {
+
 
         ArrayList<FnStorer> listOfFns = mathData.functions;
 
@@ -34,6 +46,8 @@ public class Point {
 
 
         totalNumbers = mathData.totalAmountNumbers;
+
+        // number = mathData.numbersList;
 
         //  GraphingCalculatorUI.JBar.setText(String.valueOf(number.get(totalNumbers)));
 
@@ -74,13 +88,13 @@ public class Point {
         }
 
 
-
+//GraphingCalculatorUI.JBar.setText(String.valueOf(currentFunction.getAnswer()));
         return currentFunction.getAnswer();
 
     }
 
 
-    void getX(double x) {
+    void setX(double x) {
         this.x = x;
     }
 
@@ -105,7 +119,7 @@ public class Point {
 
         } catch(IndexOutOfBoundsException indexOutOfBoundsException) {}
 
-        return  functions;
+        return functions;
 
 
 

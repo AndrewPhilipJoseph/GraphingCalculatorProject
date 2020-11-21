@@ -18,20 +18,15 @@ public class GraphingCalculatorUI extends JFrame {
     public static JTextField JBar = new JTextField();
     public static String input = new String();
 
+
+
     /*char[] x;
     char[] y;
 */
     //char[][] point = new char[][] {double x, OPERATOR, double y};
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                GraphingCalculatorUI frame = new GraphingCalculatorUI();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        new GCcontrol();
     }
 
     public GraphingCalculatorUI() {
@@ -79,7 +74,11 @@ public class GraphingCalculatorUI extends JFrame {
             input = TBar.getText();
 
             //   Convert(input);
-            new GCcontrol(input);
+            try {
+                new GCcontrol(input);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
         });
         GCalculate.setBounds(35, 86, 75, 40);
         getContentPane().add(GCalculate);

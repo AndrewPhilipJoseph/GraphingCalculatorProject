@@ -16,6 +16,9 @@ public class Seperator {
     String itS;
     private int length;
 
+    private double x;
+
+
     public ArrayList<FnStorer> functions = new ArrayList<FnStorer>();
 
 
@@ -29,58 +32,71 @@ public class Seperator {
 
 
 
-    public Seperator(String input, double x) {
+    public Seperator(String input, double x)
+    {
 
+     this.x = x;
 
         //replaces x in the function with iteration
         //value from in the UI
 
-        for (int length = 0; length < input.length(); length++) {
+        for (int length = 0; length < input.length(); length++)
+        {
 
             char iterator = input.charAt(length);
 
-            if (input.contains("x") && length < (input.length()-1)) {
 
-                if (input.charAt(length + 1) == 'x') {
-                    setNumber(itS);
-                    numbersList.add(Double.valueOf(stringNumber));
-                    holder.add(Math.OPERATOR.MULTIPLY);
-                }
-            }
 
             //iterates through input to find numbers and operators
             this.itS = String.valueOf(iterator); //sets the number to be a string
-            if (itS.equals("x")) {itS = String.valueOf(x);}
+
 
             this.length = length;
+
             completeFunction();
         }
 
 
 
-
-
-
-        if (totalAmountNumbers == 0) {
+        if (totalAmountNumbers == 0)
+         {
+             GraphingCalculatorUI.JBar.setText(String.valueOf(itS));
             numbersList.add(Double.valueOf(stringNumber));
             holder.add(Math.OPERATOR.NOOP);
-        }
+         }
 
         numbersList.add(Double.valueOf(stringNumber));
-
         store();
 
-        }
+    }
 
 
 
     public void completeFunction() {
 
-        try {
+        try
+        {
+            if (itS.equals("x") && !stringNumber.equals(""))
+            {
+
+                numbersList.add(Double.valueOf(stringNumber));
+                stringNumber = "";
+
+                holder.add(Math.OPERATOR.MULTIPLY);
+                totalAmountNumbers++;
+
+                itS = String.valueOf(x);
+
+            }
+
+            else if (itS.equals("x")) {
+                itS = String.valueOf(x);
+            }
+
+
             double currentNumber = Double.valueOf(itS);
 
             setNumber(itS);
-
 
 
         } catch (NumberFormatException numberFormatException) {
@@ -112,8 +128,10 @@ public class Seperator {
                 case "^":
                     holder.add(Math.OPERATOR.SQUARED);
                     totalAmountNumbers++;
-
                     break;
+                case "x":
+                   itS = String.valueOf(x);
+                   break;
                 //  case "sqrt":
                 //holder.add(Math.OPERATOR.SQUAREROOT);
                 //totalAmountNumbers++;
@@ -137,7 +155,6 @@ public class Seperator {
 //sets number through concat like procedure
         stringNumber = stringNumber + nextNumber;
 
-
     }
 
 
@@ -152,6 +169,12 @@ public class Seperator {
         }
 
     }
+
+    public ArrayList<Math.OPERATOR> getOperators() {return holder;}
+
+    public ArrayList<Double> getNumbers() {return numbersList;}
+
+    public int getNumOfNumbers() {return totalAmountNumbers;}
 }
 
 
