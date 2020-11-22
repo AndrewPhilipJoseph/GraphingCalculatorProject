@@ -2,6 +2,7 @@ package View;
 
 import Control.GCcontrol;
 import Model.Seperator;
+import com.sun.management.GcInfo;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
@@ -26,10 +27,10 @@ public class GraphingCalculatorUI extends JFrame {
     //char[][] point = new char[][] {double x, OPERATOR, double y};
 
     public static void main(String[] args) {
-        new GCcontrol();
+        GCcontrol control = new GCcontrol();
     }
 
-    public GraphingCalculatorUI() {
+    public GraphingCalculatorUI(GCcontrol control) {
 
 
         getContentPane().setBackground(new Color(175, 238, 238));
@@ -75,7 +76,7 @@ public class GraphingCalculatorUI extends JFrame {
 
             //   Convert(input);
             try {
-                new GCcontrol(input);
+                control.getPoints(input);
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }

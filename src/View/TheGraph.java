@@ -26,7 +26,9 @@ public class TheGraph extends JFrame
 
 
 
-    public TheGraph() throws InterruptedException {
+    public TheGraph() throws InterruptedException
+    {
+
         JFrame Graph = new JFrame();
 
         int domain1, domain2, range1, range2;
@@ -38,7 +40,7 @@ public class TheGraph extends JFrame
         Graph.getContentPane().setBackground(new Color(175, 238, 238));
         Graph.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Graph.setSize(domain2-domain1, range2-range1);
-        Graph. setResizable(false);
+        Graph.setResizable(false);
        // setBounds(100, 100, domain2-domain1, range2-range1);
         Graph.getContentPane().setLayout(null);
 
@@ -49,10 +51,12 @@ public class TheGraph extends JFrame
 
             GraphingCalculatorUI.JBar.setText(String.valueOf(5));
 
-            new drawRect(Cords, i);
+
+            Graph.add(new drawRect(Cords, i));
 
 
             Graph.repaint();
+
         }
 
 

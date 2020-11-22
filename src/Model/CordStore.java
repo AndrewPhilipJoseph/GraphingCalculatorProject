@@ -1,13 +1,13 @@
 package Model;
 
 import java.util.ArrayList;
-/*
+
 public class CordStore {
 
+  ArrayList<Model.Point> Cords = new ArrayList<Model.Point>();
+    int totalCords;
 
 
-    private ArrayList<Model.Point> Cords = new ArrayList<Model.Point>();
-    private int totalCords;
 
 
     private Point Cordinates;
@@ -20,26 +20,33 @@ public class CordStore {
     private int width = 1;
     private int height;
 
-    private int xCord = (int) (this.Cordinates.x*100);
-    private int yCord = (int) (1000-(this.Cordinates.y*100));
-    private int width = 1;
-    private int height = nextY-previousY;
 
 
-    public void setCordinates(Point cordinates) {
-        Cordinates = cordinates;
-    }
 
-    public void setNextY(int nextY) {
-        this.nextY = nextY;
-    }
-
-    public void setPreviousY(int previousY) {
-        this.previousY = previousY;
+    public void setCords(ArrayList<Model.Point> Cords) {
+        this.Cords = Cords;
     }
 
 
-    public setxCord(ArrayList<Point> Cords)
+    public void setTotalCords(int totalCords) {
+        this.totalCords = totalCords;
+    }
+
+    public void setCurrentCordinate(int n) {
+        this.Cordinates = Cords.get(n);
+    }
+
+
+    public int calculateX() {
+        return (int) (this.Cordinates.x);
+    }
+
+    public int calculateY() {
+       return (int) (100+(-1*this.Cordinates.y));
+    }
+
+
+    public int calculateHeight(int n)
     {
 
 
@@ -59,7 +66,8 @@ public class CordStore {
             this.previousY = 0;
         }
 
-        this.repaint();
+
+        return nextY-previousY;
 
     }
 
